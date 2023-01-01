@@ -1,4 +1,4 @@
 package Mini_Projects;
 
-public class M02 {
+public class M03 {
 }

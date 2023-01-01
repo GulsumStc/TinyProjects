@@ -8,6 +8,12 @@ public class P01_Lottery {
 
     public static void main(String[] args) {
 
+        startLoto();
+
+
+    }
+
+    private static void startLoto() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Sayisal loto icin hane sayisi giriniz");
         int slots = scan.nextInt();
@@ -21,7 +27,7 @@ public class P01_Lottery {
 
         //Rastgele sayilari olusturmak icin:
         //       1- Math.random() methodu 0-1 arasinda double degerler donduruyor.
-        //       2 - random classtan object olusturuyoruz ordaki methodlari kullnamak icin
+        //       2 - random classtan object olusturuyoruz ordaki methodlari kullnamak icin, nextInt() metoduyla
 
         Random random = new Random();//random class
 
@@ -72,8 +78,49 @@ public class P01_Lottery {
 
 
         }
-        System.out.println(Arrays.toString(lotoArray));
-        System.out.println(Arrays.toString(ticketArray));
+        System.out.println("Loto Sayilarim: ");
+
+        for (int w : lotoArray) {
+
+            System.out.print(w + " ");
+        }
+        System.out.println();
+        System.out.println(" benim biletim: ");
+
+        for (int w : ticketArray) {
+
+            System.out.print(w + " ");
+        }
+
+
+        int result = compareArr(lotoArray,ticketArray);
+        if (result>0) {
+            System.out.println("Tebrikler " + result + " eslesme vardir ");
+        }else {
+
+            System.out.println("Eslesme gerceklesmedi... ");
+
+        }
+
+    }
+
+
+    public static int  compareArr(int [] arr, int [] brr){// eslesme sayisini kontrol ediyorum. siralamayida baz alarak
+
+        int counter = 0;
+        int idx = 0;
+
+        for (int i = 0; i< arr.length; i++){
+
+
+                if (arr[i]==brr[idx]){
+
+                    counter++;
+                }
+           idx++;
+
+        }
+        return counter;
 
 
     }
