@@ -44,20 +44,26 @@ public class P02_Shopping {
    * ödeme sonrasında programı bitiriniz
    */
 
+    static List<String> sebetimUrun = new ArrayList<>();
+    static List<Double> sepetimKilo = new ArrayList<>();
+    static List<Double> sepetimFiyat = new ArrayList<>();
+
     public static void main(String[] args) {
 
-        introduction();
+        start();
 
+    }
+
+    public static void start(){
+        slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
+        System.out.println("Alisverisi Sonlandirmak icin '0' a basiniz");
+        introduction();
     }
 
     public static void introduction() {
         Scanner scan = new Scanner(System.in);
 
-        slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
-
         int secim = 0;
-
-        System.out.println("Alisverisi Sonlandirmak icin '0' a basiniz");
 
         do {
             System.out.println("Alisveris yapacaginiz bolumu seciniz:");
@@ -113,6 +119,9 @@ public class P02_Shopping {
             sebze();
         } else if (reyonSec == 2) {
             meyve();
+        }else {
+            System.out.println("tanimsiz reyon...");
+            manav();
         }
 
     }
@@ -121,7 +130,7 @@ public class P02_Shopping {
 
         List<String> urunKodu = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10");
         List<String> urun = Arrays.asList("Domates   ", "Patlican  ", "Biber    ", "Soğan     ", "Havuç    ", "Brokoli   ",
-                "Karnibahar", "Salata  ", "Kabak   ");
+                "Karnibahar", "Salatalik ", "Kabak   ");
         List<Double> fiyat = Arrays.asList(2.45, 2.78, 2.6, 3.75, 4.50, 5.30, 12.3, 17.89, 8.7, 4.80);
 
         System.out.println("Urun Kodu\tUrunler\t\t\tFiyat".toUpperCase());
@@ -143,7 +152,7 @@ public class P02_Shopping {
         System.out.println("Urun Kodu\tUrunler\t\t\tFiyat".toUpperCase());
         System.out.println("--------\t--------\t\t------");
         for (int i = 0; i < meyve.size(); i++) {
-            System.out.println("\t" + urunKodu.get(i) + "\t\t" + meyve.get(i) + "\t\t" + fiyat.get(i));
+            System.out.println("\t" + urunKodu.get(i) + "\t\t" + meyve.get(i) + "\t\t" + fiyat.get(i)+"$");
         }
         secim(fiyat,meyve,urunKodu);
 
@@ -160,7 +169,7 @@ public class P02_Shopping {
         System.out.println("Urun Kodu\tUrunler\t\t\tFiyat".toUpperCase());
         System.out.println("--------\t--------\t\t------");
         for (int i = 0; i < urun.size(); i++) {
-            System.out.println("\t" + urunKodu.get(i) + "\t\t" + urun.get(i) + "\t\t" + fiyat.get(i));
+            System.out.println("\t" + urunKodu.get(i) + "\t\t" + urun.get(i) + "\t\t" + fiyat.get(i)+"$");
         }
         secim(fiyat,urun,urunKodu);
 
@@ -177,7 +186,7 @@ public class P02_Shopping {
         System.out.println("Urun Kodu\tUrunler\t\t\tFiyat".toUpperCase());
         System.out.println("--------\t--------\t\t------");
         for (int i = 0; i < urun.size(); i++) {
-            System.out.println("\t" + urunKodu.get(i) + "\t\t" + urun.get(i) + "\t\t" + fiyat.get(i));
+            System.out.println("\t" + urunKodu.get(i) + "\t\t" + urun.get(i) + "\t\t" + fiyat.get(i)+"$");
         }
         secim(fiyat,urun,urunKodu);
 
@@ -190,9 +199,7 @@ public class P02_Shopping {
         double toplamFiyat = 0;
         String devamTamam = "";
 
-        List<String> sebetimUrun = new ArrayList<>();
-        List<Double> sepetimKilo = new ArrayList<>();
-        List<Double> sepetimFiyat = new ArrayList<>();
+
         DecimalFormat dd = new DecimalFormat("#.00");
         boolean a = false;
 
@@ -225,37 +232,43 @@ public class P02_Shopping {
                 sepetimFiyat.add(toplamFiyat);
                 sepetimKilo.add(kilo);
 
-                System.out.println(kilo+ " kilo " + urun.get(urunKodu.indexOf(urunK)) + "= " + dd.format(toplamFiyat));
+                System.out.println(kilo+ " kilo " + urun.get(urunKodu.indexOf(urunK)) + "= " + dd.format(toplamFiyat)+"$");
 
-            System.out.println("Istediginiz baska urun varsa 'y' yoksa herhangi bir tusa basiniz...");
+            System.out.println("Istediginiz baska urun varsa 'y' diger reyonlar icin d' yoksa herhangi bir tusa basiniz...");
             devamTamam = scan.next();
-
-            if (devamTamam.equals("y")) {
+            if (devamTamam.equals("d")){
+                introduction();
+            }
+            else if (devamTamam.equals("y")) {
 
                 a = true;
 
             } else {
 
                slowPrint("Odeme kismina yonlendiriliyorsunuz...\n",80);
+               fis();
                 break;
             }
 
         } while (true);
 
+    }
+
+    public static void fis(){
+        DecimalFormat dd = new DecimalFormat("#.00");
         double toplam = 0;
 
-        slowPrint("**Fisiniz**\n",80);
+        slowPrint("-**Fisiniz**-\n",80);
 
         for (int i = 0; i < sepetimFiyat.size(); i++) {
 
-            System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+"Tutar : "+dd.format(sepetimFiyat.get(i)));
+            System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+" Tutar : "+dd.format(sepetimFiyat.get(i))+"$");
             toplam+=sepetimFiyat.get(i);
 
         }
-        System.out.println("Toplam Tutar: "+ dd.format(toplam) );
+        System.out.println("Toplam Tutar: "+ dd.format(toplam)+"$" );
 
         slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
-
 
     }
 
