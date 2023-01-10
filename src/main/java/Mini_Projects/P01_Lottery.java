@@ -10,7 +10,6 @@ public class P01_Lottery {
 
         startLoto();
 
-
     }
 
     private static void startLoto() {
@@ -76,7 +75,6 @@ public class P01_Lottery {
 
             ticketArray[i] = randomNumber2;
 
-
         }
         System.out.println("Loto Sayilarim: ");
 
@@ -104,14 +102,12 @@ public class P01_Lottery {
 
     }
 
-
     public static int  compareArr(int [] arr, int [] brr){// eslesme sayisini kontrol ediyorum. siralamayida baz alarak
 
         int counter = 0;
         int idx = 0;
 
         for (int i = 0; i< arr.length; i++){
-
 
                 if (arr[i]==brr[idx]){
 
