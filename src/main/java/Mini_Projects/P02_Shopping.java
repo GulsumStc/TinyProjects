@@ -198,6 +198,7 @@ public class P02_Shopping {
         double kilo = 0;
         double toplamFiyat = 0;
         String devamTamam = "";
+        int urunKKontrol =0;
 
 
         DecimalFormat dd = new DecimalFormat("#.00");
@@ -207,6 +208,19 @@ public class P02_Shopping {
 
             System.out.println("Isteginiz urunun kodunu  seciniz");
             urunK = scan.next();
+
+            for (String s : urunKodu) {
+                if (s.equals(urunK)) {
+                    urunKKontrol++;
+                    break;
+                }
+            }
+            if (urunKKontrol==0){
+                System.out.println("Tanimsiz urun, Tekrar secim yapiniz");
+                a=true;
+                continue;
+
+            }
 
             for (int i = 0; i < urunKodu.size() ; i++) {
 
