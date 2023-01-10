@@ -60,24 +60,25 @@ public class P02_Shopping {
         System.out.println("Alisverisi Sonlandirmak icin '0' a basiniz");
         System.out.println("Alisveris yapacaginiz bolumu seciniz:");
         do {
-            if (secim == 0) {
-                System.out.println("Iyi gunler diler yine bekleriz.");
-                break;
-            }
+
             System.out.println(
                     " Manav icin:     1 \n" +
                             " Sarkuteri icin: 2\n" +
                             " Market icin:    3\n");
 
             secim = scan.nextInt();
+            if (secim == 0) {
+                System.out.println("Iyi gunler diler yine bekleriz.");
+                break;
+            }
             if (secim == 1) {
-                slowPrint("Manav bolumune yonlendiriliyorsunuz....", 50);
+                slowPrint("Manav bolumune yonlendiriliyorsunuz....", 30);
                 manav();
             } else if (secim == 2) {
-                slowPrint("Sarkuteri bolumune yonlendiriliyorsunuz....\n", 50);
+                slowPrint("Sarkuteri bolumune yonlendiriliyorsunuz....\n", 30);
                 sarkuteri();
             } else if (secim == 3) {
-                slowPrint("market bolumune yonlendiriliyorsunuz....\n", 50);
+                slowPrint("Market bolumune yonlendiriliyorsunuz....\n", 30);
                 market();
             } else {
                 System.out.println("!!! Secim tanimli degil, Lutfen dogru bir secim yapiniz");
@@ -152,7 +153,7 @@ public class P02_Shopping {
     public static void sarkuteri(){
 
         List<String> urunKodu = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10");
-        String[] u = {"sucuk    ", "salam    ", "sosis    ", "Dana   ", "Kusbasi   ", "Kiyma    ", "Kofte   ", "Kasar   ", "KellePaca ", "Ciger   "};
+        String[] u = {"sucuk    ", "salam    ", "sosis    ", "Dana    ", "Kusbasi   ", "Kiyma    ", "Kofte   ", "Kasar   ", "KellePaca ", "Ciger   "};
         List<String> urun = Arrays.asList(u);
         List<Double> fiyat = Arrays.asList(220.45, 210.78, 260.6, 390.75, 140.50, 150.30, 120.3, 170.890, 180.7, 140.80);
 
@@ -169,9 +170,9 @@ public class P02_Shopping {
 
         List<String> urunKodu = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10");
         String[] u = {"Biskuvit ", "Cikolata  ", "Makarna   ", "Yag      ", "Deterjan  ", "Pecete   ",
-                      "Sakiz   ", "Pasta   ", "Boya    ", "cips   "};
+                      "Sakiz   ", "Pasta   ", "Boya    ", "cips     "};
         List<String> urun = Arrays.asList(u);
-        List<Double> fiyat = Arrays.asList(220.45, 210.78, 260.6, 390.75, 140.50, 150.30, 120.3, 170.890, 180.7, 140.80);
+        List<Double> fiyat = Arrays.asList(22.45, 21.78, 26.6, 39.75, 14.50, 15.30, 12.3, 17.890, 18.7, 14.80);
 
         System.out.println("Urun Kodu\tUrunler\t\t\tFiyat".toUpperCase());
         System.out.println("--------\t--------\t\t------");
@@ -190,6 +191,7 @@ public class P02_Shopping {
         String devamTamam = "";
 
         List<String> sebetimUrun = new ArrayList<>();
+        List<Double> sepetimKilo = new ArrayList<>();
         List<Double> sepetimFiyat = new ArrayList<>();
         DecimalFormat dd = new DecimalFormat("#.00");
         boolean a = false;
@@ -199,7 +201,7 @@ public class P02_Shopping {
             System.out.println("Isteginiz urunun kodunu  seciniz");
             urunK = scan.next();
 
-            for (int i = 0; i < urunKodu.size() - 1; i++) {
+            for (int i = 0; i < urunKodu.size() ; i++) {
 
                 if (urunK.equals(urunKodu.get(i))) {
                     System.out.println("Secilen Urun: " + urun.get(i));
@@ -221,8 +223,9 @@ public class P02_Shopping {
 
                 sebetimUrun.add(urun.get(urunKodu.indexOf(urunK)));
                 sepetimFiyat.add(toplamFiyat);
+                sepetimKilo.add(kilo);
 
-                System.out.println(kilo + " kilo " + urun.get(urunKodu.indexOf(urunK)) + "= " + dd.format(toplamFiyat));
+                System.out.println(kilo+ " kilo " + urun.get(urunKodu.indexOf(urunK)) + "= " + dd.format(toplamFiyat));
 
             System.out.println("Istediginiz baska urun varsa 'y' yoksa herhangi bir tusa basiniz...");
             devamTamam = scan.next();
@@ -245,11 +248,11 @@ public class P02_Shopping {
 
         for (int i = 0; i < sepetimFiyat.size(); i++) {
 
-            System.out.println(sebetimUrun.get(i)+":  "+ dd.format(sepetimFiyat.get(i)));
+            System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+"Tutar : "+dd.format(sepetimFiyat.get(i)));
             toplam+=sepetimFiyat.get(i);
 
         }
-        System.out.println("Odenecek toplam fiyat: "+ dd.format(toplam) );
+        System.out.println("Toplam Tutar: "+ dd.format(toplam) );
 
         slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
 
