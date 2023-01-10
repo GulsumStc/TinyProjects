@@ -15,7 +15,7 @@ public class P02_Shopping {
       4-urunleri listele ve
       5-fiyatlari gelsin
    *
-   * Basrili P02_Shopping alış-veriş programı.
+
       1. Adım:* Ürünler ve fiyatları içeren listeleri oluşturunuz.
 
       No   Ürün    Fiyat
@@ -43,17 +43,17 @@ public class P02_Shopping {
        7. Eğer bitirmek istiyorsa ödeme kısmına geçiniz ve
    * ödeme sonrasında programı bitiriniz
    */
+
     public static void main(String[] args) {
 
         introduction();
 
     }
 
-
     public static void introduction() {
         Scanner scan = new Scanner(System.in);
 
-        slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 80);
+        slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
 
         int secim = 9;
 
@@ -82,11 +82,9 @@ public class P02_Shopping {
             } else {
                 System.out.println("!!! Secim tanimli degil, Lutfen dogru bir secim yapiniz");
 
-
             }
 
         } while (!(secim == 1 || secim == 2 || secim == 3));
-
 
     }
 
@@ -132,7 +130,6 @@ public class P02_Shopping {
         }
 
         secim(fiyat,urun,urunKodu);
-
 
     }
 
@@ -255,6 +252,7 @@ public class P02_Shopping {
         System.out.println("Odenecek toplam fiyat: "+ dd.format(toplam) );
 
         slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
+
 
     }
 
