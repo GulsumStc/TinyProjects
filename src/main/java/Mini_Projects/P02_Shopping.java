@@ -55,12 +55,12 @@ public class P02_Shopping {
 
         slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
 
-        int secim = 9;
+        int secim = 0;
 
         System.out.println("Alisverisi Sonlandirmak icin '0' a basiniz");
-        System.out.println("Alisveris yapacaginiz bolumu seciniz:");
-        do {
 
+        do {
+            System.out.println("Alisveris yapacaginiz bolumu seciniz:");
             System.out.println(
                     " Manav icin:     1 \n" +
                             " Sarkuteri icin: 2\n" +
