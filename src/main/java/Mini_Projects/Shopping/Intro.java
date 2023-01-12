@@ -26,7 +26,7 @@ public class Intro {
     public static void introduction() {
         Scanner scan = new Scanner(System.in);
 
-        int secim = 0;
+        String secim = "";
 
         do {
             System.out.println("Alisveris yapacaginiz bolumu seciniz:");
@@ -35,18 +35,18 @@ public class Intro {
                             " Sarkuteri icin: 2\n" +
                             " Market icin:    3\n");
 
-            secim = scan.nextInt();
-            if (secim == 0) {
+            secim = scan.next();
+            if (secim.equalsIgnoreCase("0")) {
                 System.out.println("Iyi gunler diler yine bekleriz.");
                 break;
             }
-            if (secim == 1) {
+            if (secim.equalsIgnoreCase("1")) {
                 slowPrint("Manav bolumune yonlendiriliyorsunuz....", 30);
                 Manav.manav();
-            } else if (secim == 2) {
+            } else if (secim.equalsIgnoreCase("2")) {
                 slowPrint("Sarkuteri bolumune yonlendiriliyorsunuz....\n", 30);
                 Sarkuteri.sarkuteri();
-            } else if (secim == 3) {
+            } else if (secim.equalsIgnoreCase("3")) {
                 slowPrint("Market bolumune yonlendiriliyorsunuz....\n", 30);
                 Market.market();
             } else {
@@ -54,7 +54,7 @@ public class Intro {
 
             }
 
-        } while (!(secim == 1 || secim == 2 || secim == 3));
+        } while (!(secim.equalsIgnoreCase("1") ||secim.equalsIgnoreCase("2") || secim.equalsIgnoreCase("3")));
 
     }
 }

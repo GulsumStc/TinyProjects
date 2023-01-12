@@ -23,33 +23,35 @@ public class Fis {
         String secim;
         boolean a;
 
-        do {
-            a= false;
+       do {
+
+         a= false;
             for (Double w: sepetimFiyat) {
                 toplamFiyat += w;
             }
-            if (toplamFiyat>500){
-                System.out.println("%10 indirim kazandiniz");
-                toplamFiyat= toplamFiyat*0.9;
 
-            }else {
-                System.out.println("%10 indirim hakki icin "+ (dd.format(500-toplamFiyat)) +"$ daha alis veris yapmalisiniz ");
-                System.out.println("Alisverise devam etmek icin d\n alisverisi bitirmek icin herhangi bir tusa basiniz");
-                secim= scan.next();
-                if (secim.equals("d")) {
-                    Intro.introduction();
-                    continue;
-                }
+        if (toplamFiyat>500){
+            System.out.println("%10 indirim kazandiniz");
+            toplamFiyat= toplamFiyat*0.9;
+
+
+        }else {
+            System.out.println("%10 indirim hakki icin "+ (dd.format(500-toplamFiyat)) +"$ daha alis veris yapmalisiniz ");
+            System.out.println("Alisverise devam etmek icin d\n alisverisi bitirmek icin herhangi bir tusa basiniz");
+            secim= scan.next();
+            if (secim.equalsIgnoreCase("d")) {
+                Intro.introduction();
+                 continue;
             }
+        }
             Intro.slowPrint("-**Fisiniz**-\n",80);
 
             for (int i = 0; i < sepetimFiyat.size(); i++) {
 
                 System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+" Tutar : "+dd.format(sepetimFiyat.get(i))+"$");
-
             }
-            System.out.println("Toplam Tutar: "+ dd.format(toplamFiyat)+"$" );
 
+            System.out.println("Toplam Tutar: "+ dd.format(toplamFiyat)+"$" );
 
             DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH-mm-ss");
@@ -59,5 +61,6 @@ public class Fis {
 
         }while (a);
     }
+
 
 }

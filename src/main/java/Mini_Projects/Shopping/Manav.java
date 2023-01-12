@@ -13,17 +13,16 @@ public class Manav {
         System.out.println("Sebze Reyonu icin: 1\n" +
                 "Meyve Reyonu icin: 2\n");
 
-        int reyonSec = scan.nextInt();
+        String  reyonSec = scan.next();
 
-        if (reyonSec == 1) {
+        if (reyonSec.equalsIgnoreCase("1")) {
             sebze();
-        } else if (reyonSec == 2) {
+        } else if (reyonSec.equalsIgnoreCase("2")) {
             meyve();
         }else {
             System.out.println("tanimsiz reyon...");
             manav();
         }
-
     }
 
     private static void sebze() {

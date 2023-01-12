@@ -9,8 +9,8 @@ import java.util.*;
 
 public class P02_Shopping {
 
-
     /*
+
    * ilk programa girildiginde bizi bir menu karsilasin bu secenekler
       1 manav,
       2 sarkuteri,
@@ -19,7 +19,6 @@ public class P02_Shopping {
       4-urunleri listele ve
       5-fiyatlari gelsin
    *
-
       1. Adım:* Ürünler ve fiyatları içeren listeleri oluşturunuz.
 
       No   Ürün    Fiyat
@@ -52,16 +51,11 @@ public class P02_Shopping {
     static List<Double> sepetimKilo = new ArrayList<>();
     static List<Double> sepetimFiyat = new ArrayList<>();
 
-
-
-
     public static void main(String[] args) {
 
         start();
 
     }
-
-
 
     public static void start(){
         slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
@@ -78,7 +72,7 @@ public class P02_Shopping {
         do {
             System.out.println("Alisveris yapacaginiz bolumu seciniz:");
             System.out.print(
-                    " Manav icin:     1 \n" +
+                            " Manav icin:     1\n" +
                             " Sarkuteri icin: 2\n" +
                             " Market icin:    3\n");
 
@@ -98,7 +92,6 @@ public class P02_Shopping {
                 market();
             } else {
                 System.out.println("!!! Secim tanimli degil, Lutfen dogru bir secim yapiniz");
-
             }
 
         } while (!(secim == 1 || secim == 2 || secim == 3));
@@ -154,6 +147,7 @@ public class P02_Shopping {
     }
 
     private static void meyve() {
+
         List<String> urunKodu = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10");
         String[] meyv = {"Elma     ", "Portakal ", "Muz      ", "Mandalina", "Çilek    ", "Kavun    ", "Ananas   ", "Üzüm     ", "Limon    ", "Avokado  "};
         List<String> meyve = Arrays.asList(meyv);
