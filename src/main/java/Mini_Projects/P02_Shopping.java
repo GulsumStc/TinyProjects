@@ -66,6 +66,7 @@ public class P02_Shopping {
     public static void start(){
         slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
         System.out.println("Alisverisi Sonlandirmak icin '0' a basiniz");
+        System.out.println("500$ ve uzeri alisverisinizde %10 indirim uygulanmaktadir.");
         introduction();
     }
 
@@ -76,7 +77,7 @@ public class P02_Shopping {
 
         do {
             System.out.println("Alisveris yapacaginiz bolumu seciniz:");
-            System.out.println(
+            System.out.print(
                     " Manav icin:     1 \n" +
                             " Sarkuteri icin: 2\n" +
                             " Market icin:    3\n");
@@ -166,7 +167,6 @@ public class P02_Shopping {
         secim(fiyat,meyve,urunKodu);
 
     }
-
 
     public static void sarkuteri(){
 
@@ -260,35 +260,56 @@ public class P02_Shopping {
 
                slowPrint("Odeme kismina yonlendiriliyorsunuz...\n",80);
                fis();
-                break;
+                a=false;
             }
 
-        } while (true);
+        } while (a);
 
     }
 
     public static void fis(){
 
+        Scanner scan = new Scanner(System.in);
         DecimalFormat dd = new DecimalFormat("#.00");
-        double toplam = 0;
+        double toplamFiyat = 0;
+        String secim;
+        boolean a;
 
-        slowPrint("-**Fisiniz**-\n",80);
+       do {
+           a= false;
+           for (Double w: sepetimFiyat) {
+               toplamFiyat += w;
+           }
+           if (toplamFiyat>500){
+               System.out.println("%10 indirim kazandiniz");
+               toplamFiyat= toplamFiyat*0.9;
 
-        for (int i = 0; i < sepetimFiyat.size(); i++) {
+           }else {
+               System.out.println("%10 indirim hakki icin "+ (dd.format(500-toplamFiyat)) +"$ daha alis veris yapmalisiniz ");
+               System.out.println("Alisverise devam etmek icin d\n alisverisi bitirmek icin herhangi bir tusa basiniz");
+               secim= scan.next();
+               if (secim.equals("d")) {
+                   introduction();
+                   continue;
+               }
+           }
+           slowPrint("-**Fisiniz**-\n",80);
 
-            System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+" Tutar : "+dd.format(sepetimFiyat.get(i))+"$");
-            toplam+=sepetimFiyat.get(i);
+           for (int i = 0; i < sepetimFiyat.size(); i++) {
 
-        }
-        System.out.println("Toplam Tutar: "+ dd.format(toplam)+"$" );
+               System.out.println("Urun: "+sebetimUrun.get(i)+" kilo : "+ sepetimKilo.get(i)+" Tutar : "+dd.format(sepetimFiyat.get(i))+"$");
 
-        DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-        System.out.println(dff.format(LocalDate.now()));
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH-mm-ss");
-        System.out.println(dtf.format(LocalTime.now()));
+           }
+           System.out.println("Toplam Tutar: "+ dd.format(toplamFiyat)+"$" );
 
-        slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
 
+           DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH-mm-ss");
+           System.out.println("Tarih: "+dff.format(LocalDate.now()) +" // "+dtf.format(LocalTime.now()));
+
+           slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
+
+       }while (a);
     }
 
 
