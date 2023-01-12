@@ -1,6 +1,10 @@
 package Mini_Projects;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class P02_Shopping {
@@ -48,11 +52,16 @@ public class P02_Shopping {
     static List<Double> sepetimKilo = new ArrayList<>();
     static List<Double> sepetimFiyat = new ArrayList<>();
 
+
+
+
     public static void main(String[] args) {
 
         start();
 
     }
+
+
 
     public static void start(){
         slowPrint("......Alisverisin sevimli adresine hosgeldiniz........\n\n", 40);
@@ -174,7 +183,6 @@ public class P02_Shopping {
         secim(fiyat,urun,urunKodu);
 
     }
-
     public static void market(){
 
         List<String> urunKodu = Arrays.asList("01", "02", "03", "04", "05", "06", "07", "08", "09", "10");
@@ -194,14 +202,13 @@ public class P02_Shopping {
     public static void secim(List<Double> fiyat, List<String> urun, List<String > urunKodu){
 
         Scanner scan = new Scanner(System.in);
+
+        DecimalFormat dd = new DecimalFormat("#.00");
+
         String urunK = "";
         double kilo = 0;
         double toplamFiyat = 0;
         String devamTamam = "";
-        int urunKKontrol =0;
-
-
-        DecimalFormat dd = new DecimalFormat("#.00");
         boolean a = false;
 
         do {
@@ -209,17 +216,10 @@ public class P02_Shopping {
             System.out.println("Isteginiz urunun kodunu  seciniz");
             urunK = scan.next();
 
-            for (String s : urunKodu) {
-                if (s.equals(urunK)) {
-                    urunKKontrol++;
-                    break;
-                }
-            }
-            if (urunKKontrol==0){
+            if (!urunKodu.contains(urunK)){
                 System.out.println("Tanimsiz urun, Tekrar secim yapiniz");
                 a=true;
-                continue;
-
+               continue;
             }
 
             for (int i = 0; i < urunKodu.size() ; i++) {
@@ -248,13 +248,12 @@ public class P02_Shopping {
 
                 System.out.println(kilo+ " kilo " + urun.get(urunKodu.indexOf(urunK)) + "= " + dd.format(toplamFiyat)+"$");
 
-            System.out.println("Istediginiz baska urun varsa 'y' diger reyonlar icin d' yoksa herhangi bir tusa basiniz...");
+             slowPrint("Bu reyondan istediginiz baska urun varsa 'y' diger reyonlar icin 'd' yoksa herhangi bir tusa basiniz...",20);
             devamTamam = scan.next();
             if (devamTamam.equals("d")){
                 introduction();
             }
             else if (devamTamam.equals("y")) {
-
                 a = true;
 
             } else {
@@ -269,6 +268,7 @@ public class P02_Shopping {
     }
 
     public static void fis(){
+
         DecimalFormat dd = new DecimalFormat("#.00");
         double toplam = 0;
 
@@ -281,6 +281,11 @@ public class P02_Shopping {
 
         }
         System.out.println("Toplam Tutar: "+ dd.format(toplam)+"$" );
+
+        DateTimeFormatter dff = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+        System.out.println(dff.format(LocalDate.now()));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH-mm-ss");
+        System.out.println(dtf.format(LocalTime.now()));
 
         slowPrint("Bizi tercih ettiginiz icin tesekkurler... Saglikli gunler dileriz.",60);
 
